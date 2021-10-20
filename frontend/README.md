@@ -24,7 +24,9 @@ If you still choose to go ahead, you can simply ignore the rest of the readme he
 
 # Available Routes
 `/bookings` - List all the booking in a table
+
 `/bookings/:bookingId` - Update page of the booking
+
 `/` - Create a new Booking
 
 # Containers
