@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Vaccine Booking App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To get you quickly started on the challenge, we have created this boilerplate as a guideline
 
-## Available Scripts
+This project was bootstrapped with 
+- [Create React App](https://github.com/facebook/create-react-app).
+- [Material UI](https://mui.com/)
 
-In the project directory, you can run:
+You can read the specific Create React App Read me at `CRA-README.md`
 
-### `yarn start`
+# What you need to do
+## If using this boilerplate
+- Read the code
+- The code only contain simple logic to display data on the UI, nothing beyond that.
+- Backend code not included, you will have to provide this
+- You need to fill up the code invoke API calls that you will build
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## If you don't wish to use this boilerplate
+Yes, you can choose build your own ui, but we typically find that people spend too much time on these stuff, and we want you to focus on building the important and complicated things
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+If you still choose to go ahead, you can simply ignore the rest of the readme here
 
-### `yarn test`
+# Available Routes
+`/bookings` - List all the booking in a table
+`/bookings/:bookingId` - Update page of the booking
+`/` - Create a new Booking
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Containers
+## EditVaccineRegistration
+Dummy UI with prepopulated data, your main aim is to fill up this with real data from (hopefully) your db, and implement a update API call
+## VaccineRegistrationListing
+A table of all the bookings, including two links to update and delete bookings, your main aim is to fill this up with real data, and implement your delete API call
+## VaccineRegistration
+Dummy UI to accept data from the users, your main aim here is to call the Create booking API
 
-### `yarn build`
+# What you should do
+Git clone this project, don't fork it.
+If you are submitting the challenge using this boilerplate via github follow the instruction [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# What you can do
+Change any UI code as you like.
+- one more button? 
+- one more field?
+- don't like the color of the table?
+- want more page?
+- want to use Redux?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Go ahead, we are not stopping you.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# All the best in completing the Challenge!
