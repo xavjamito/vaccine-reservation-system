@@ -1,5 +1,6 @@
 # Vaccine Booking App
 
+[Demo](https://616ff04b1aa94d03fec2c7e4--vaccine-center.netlify.app/)
 To get you quickly started on the challenge, we have created this boilerplate as a guideline
 
 This project was bootstrapped with 
