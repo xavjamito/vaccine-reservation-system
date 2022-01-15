@@ -8,9 +8,9 @@ const intervals = require("../util/dateTimeUtil")
 
 //create new slots
 router.post("/new", (req, res) => { 
-  const { centre, dayMonthYear, day } = req.body;
+  const { centre, formattedDate, day } = req.body;
   // check if a slot for that vaccine centre and date has already been created
-  slotDB.find({ vaccinationCenterID: centre, date: dayMonthYear }, async (err, slotsFound) => {
+  slotDB.find({ vaccinationCenterID: centre, date: formattedDate }, async (err, slotsFound) => {
     if (err) res.status(500).json(err)
     else if (!slotsFound.length) {
       //if no slots are found, generate slot
@@ -39,7 +39,7 @@ router.post("/new", (req, res) => {
           for (let i = 0; i < (timeSlots.length * nursesInShift.length); i++) {
             slotsToBeCreated.push({
               vaccinationCenterID: centre,
-              date: dayMonthYear,
+              date: formattedDate,
               time: timeSlots[i],
               booked: false
             })

@@ -53,19 +53,19 @@ const EditVaccinationBooking = ({ setBookingList }) => {
     );
 
   const handleEditBooking = async () => {
-    const d = new Date(selectedDate);
-    const date = `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
+    const date = new Date(selectedDate);
+    const formattedDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
-    const userPackage = {
+    const user = {
       name: name,
       nric: nric,
-      dayMonthYear: date,
+      formattedDate,
       timeSlot: selectedSlot,
       centreName: selectedCentre.name,
       centre: selectedCentre._id,
     };
 
-    handleEdit({ userPackage, reservationID, setBookingList, setErrorMessage, history });
+    handleEdit({ user, reservationID, setBookingList, setErrorMessage, history });
   };
 
   return (

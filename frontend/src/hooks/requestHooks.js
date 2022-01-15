@@ -36,7 +36,7 @@ export const useUserData = ({ reservationID, setUserInfo, setMessage }) => {
 };
 
 export const registerAndBook = async ({
-  userPackage,
+  user,
   setErrorMessage,
   history,
 }) => {
@@ -47,7 +47,7 @@ export const registerAndBook = async ({
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(userPackage),
+    body: JSON.stringify(user),
   });
   if (res.ok) {
     // const { userBooking } = await res.json();
@@ -59,7 +59,7 @@ export const registerAndBook = async ({
 };
 
 export const handleEdit = async ({
-  userPackage,
+  user,
   reservationID,
   setErrorMessage,
   history,
@@ -71,7 +71,7 @@ export const handleEdit = async ({
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(userPackage),
+    body: JSON.stringify(user),
   });
   if (res.ok) {
     history.push("/bookings");
@@ -121,7 +121,7 @@ export const useFetchSlots = async (
           },
           body: JSON.stringify({
             centre: centreId,
-            dayMonthYear: date,
+            formattedDate: date,
             day: day,
           }),
         }

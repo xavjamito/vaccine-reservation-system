@@ -19,7 +19,7 @@ import {
 } from "../../hooks/requestHooks";
 import moment from "moment";
 
-const VaccineRegistration = ({ setBookingList, centreList }) => {
+const VaccineRegistration = ({ centreList }) => {
   const [selectedCentre, setSelectedCentre] = useState("");
   const [selectedDate, setSelectedDate] = useState();
   const [selectedSlot, setSelectedSlot] = useState("");
@@ -27,28 +27,27 @@ const VaccineRegistration = ({ setBookingList, centreList }) => {
   const [bookingData, setBookingData] = useState("");
   const [availableSlots, setAvailableSlots] = useState();
   const history = useHistory();
-  const today = new Date();
       
-      useFetchSlots(
-        {
-          selectedDate,
-          selectedCentre,
-          setAvailableSlots,
-          setErrorMessage,
-        },);
+  useFetchSlots(
+    {
+      selectedDate,
+      selectedCentre,
+      setAvailableSlots,
+      setErrorMessage,
+    },);
 
   const handleSubmitBooking = async () => {
-    const d = new Date(selectedDate);
-    const date = `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
-    const userPackage = {
+    const date = new Date(selectedDate);
+    const formattedDate = `${date.getDate()} ${date.getMonth() + 1} ${date.getFullYear()}`;
+    const user = {
       ...bookingData,
-      dayMonthYear: date,
+      formattedDate,
       slot: selectedSlot,
       centreName: selectedCentre.name,
       centre: selectedCentre._id,
     };
 
-    registerAndBook({ userPackage, setErrorMessage, history });
+    registerAndBook({ user, setErrorMessage, history });
   };
   
   return (
