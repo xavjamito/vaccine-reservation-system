@@ -8,8 +8,6 @@ const slotDB = require("../models/Slot");
 router.post("/new", (req, res) => {
   //* Check user exist
   const { name, nric, centre, centreName, slot } = req.body;
-  console.log("register and book req", req.body)
-
   userDB.findOne({ nric }, (err, userFound) => {
     if (err) res.status(500).json(err);
     else if (userFound) {
@@ -24,7 +22,6 @@ router.post("/new", (req, res) => {
         // User is now created along with reservation
         if (err) res.status(500).json(err);
         else {
-          console.log("user created", userCreated)
           reservationDB.create({
             userID: userCreated._id,
             userNRIC: userCreated.nric,
@@ -43,13 +40,7 @@ router.post("/new", (req, res) => {
               const updatedSlot = await slotDB.findOneAndUpdate(filter, update, {
                 new: true
               })
-              console.log("updated slot: ", updatedSlot);
               res.status(200).json({ reservationCreated });
-              // slotDB.updateOne({ _id: reservationCreated.slotID, $set : {booked: true } }, (err, slotUpdated) => {
-              //   if (err) res.status(500).json(err);
-              //   else {
-              //   }
-              // })
             }
           })
         }
@@ -80,12 +71,10 @@ router.put("/edit/:reservationID", (req, res) => {
   const reservationID = req.params.reservationID;
   const { name, nric, centre, centreName, timeSlot } = req.body;
   const dateTime = `${timeSlot.date} ${timeSlot.time}`;
-  console.log('req.body', req.body)
 
   reservationDB.findById(reservationID, async (err, prevReservation) => {
     if (err) res.status(500).json(err);
     else {
-      console.log('previous reservation', prevReservation);
       //only update reservation if there is an actual change in the data
       if (
         prevReservation.name !== name ||
@@ -118,7 +107,6 @@ router.put("/edit/:reservationID", (req, res) => {
                 new: true
               })
                             
-              console.log('updated reservation', updatedReservation);
               //update new slot and set booked to true
               const newSlotUpdate = {
                 booked: true
@@ -153,7 +141,6 @@ router.delete("/delete/:reservationID", (req, res) => {
     if (err) res.status(500).json(err);
     else {
       //delete user
-      console.log('deleted reservation', deletedReservation);
       await userDB.findOneAndDelete({nric: deletedReservation.userNRIC})
       //set slot's booked field to false
       const slotUpdate = {

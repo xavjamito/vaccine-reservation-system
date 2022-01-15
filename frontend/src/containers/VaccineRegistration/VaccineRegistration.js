@@ -51,9 +51,6 @@ const VaccineRegistration = ({ setBookingList, centreList }) => {
     registerAndBook({ userPackage, setErrorMessage, history });
   };
   
-  console.log("today", today)
-  console.log("available slots", availableSlots)
-
   return (
     <React.Fragment>
       <CssBaseline />

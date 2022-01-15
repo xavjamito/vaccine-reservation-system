@@ -9,7 +9,6 @@ const intervals = require("../util/dateTimeUtil")
 //create new slots
 router.post("/new", (req, res) => { 
   const { centre, dayMonthYear, day } = req.body;
-  console.log("generate slot request body:", req.body)
   // check if a slot for that vaccine centre and date has already been created
   slotDB.find({ vaccinationCenterID: centre, date: dayMonthYear }, async (err, slotsFound) => {
     if (err) res.status(500).json(err)
@@ -47,7 +46,6 @@ router.post("/new", (req, res) => {
           }
           
           const newSlots = await slotDB.insertMany(slotsToBeCreated)
-          console.log("new slot created!", newSlots);
           res.status(200).json({ slots: newSlots });
         }
       })
@@ -58,7 +56,6 @@ router.post("/new", (req, res) => {
     const unbookedSlots = slotsFound?.filter(slot => {
       return slot.booked === false
     })
-    console.log("slots found, returning existing:", unbookedSlots);
     if (unbookedSlots.length > 0) res.status(200).json({ slots: unbookedSlots });
     else res.status(400).json({ message: "All slots for this date are fully booked." })
     }
@@ -74,7 +71,6 @@ router.get("/available/all", (req, res) => {
     }
     else if (availableSlots.length) {
     //if there are slots found for that date
-      console.log("slots found, returning existing:", availableSlots);
       res.status(200).json({ availableSlots });
     }
   })

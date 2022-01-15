@@ -26,7 +26,6 @@ const ListVaccinationBooking = ({
 }) => {
   const [message, setMessage] = useState();
   const [selectedCentre, setSelectedCentre] = useState("  ");
-  console.log('selected centre', selectedCentre);
   return (
     <>
       <CssBaseline />

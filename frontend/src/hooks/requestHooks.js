@@ -7,7 +7,6 @@ export const useFetchCentre = ({ setCentreList, setMessage }) => {
         mode: "cors",
       });
       const { allCentre } = await res.json();
-      console.log("all centres", allCentre)
       if (res.ok) setCentreList(allCentre);
     };
     fetchAllCentres();
@@ -15,12 +14,10 @@ export const useFetchCentre = ({ setCentreList, setMessage }) => {
 };
 
 export const fetchCentreBooking = async (centre, setBookingList) => {
-  console.log("hit");
   const res = await fetch(`/api/reservation/centre/${centre._id}`, {
     mode: "cors",
   });
   const { reservationsFound } = await res.json();
-  console.log("allCentreBooking", reservationsFound);
   if (res.ok) setBookingList(reservationsFound);
 };
 
@@ -31,7 +28,6 @@ export const useUserData = ({ reservationID, setUserInfo, setMessage }) => {
         mode: "cors",
       });
       const data = await res.json();
-      console.log('user data:', data);
       if (res.ok) setUserInfo(data);
       else setMessage("Website Temporary Unavilable");
     };
@@ -98,8 +94,6 @@ export const handleDelete = async (
     method: "DELETE",
   });
   if (res.ok) {
-    const { deletedUser } = await res.json();
-    console.log("index", index);
     setBookingList((bookingList) => {
       return bookingList?.filter((item, itemIndex) => itemIndex !== index)
     });

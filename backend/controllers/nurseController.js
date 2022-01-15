@@ -13,8 +13,7 @@ router.get("/all", (req, res) => {
 //GET all nurses working in centre
 router.get("/:centreId", (req, res) => {
   const centre = req.params.centreId;
-  console.log('nurse centre id', centre);
-
+  
   nurseDB.find({ vaccinationCentreID: centre }, async (err, nursesFound) => {
     if (err) res.status(500).json(err)
     else if (!nursesFound.length) {

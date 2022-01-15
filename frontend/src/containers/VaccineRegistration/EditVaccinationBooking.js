@@ -64,7 +64,6 @@ const EditVaccinationBooking = ({ setBookingList }) => {
       centreName: selectedCentre.name,
       centre: selectedCentre._id,
     };
-    console.log("userPackage", userPackage);
 
     handleEdit({ userPackage, reservationID, setBookingList, setErrorMessage, history });
   };
