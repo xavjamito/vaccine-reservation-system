@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Table,
   Box,
@@ -11,103 +10,87 @@ import {
   TableRow,
   TableHead,
   Container,
-  Select,
-  MenuItem,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { handleDelete, fetchCentreBooking } from "../../hooks/requestHooks";
+import React, { Component } from "react";
 
-const ListVaccinationBooking = ({
-  bookingList,
-  setBookingList,
-  centreList,
-}) => {
-  const [message, setMessage] = useState();
-  const [selectedCentre, setSelectedCentre] = useState("  ");
-  console.log('selected centre', selectedCentre);
-  return (
-    <>
-      <CssBaseline />
-      <Container>
-        <Box sx={{ mt: 8 }}>
-          {message && <h1>{message}</h1>}
-          <Box sx={{ mt: 8, display: "flex", justifyContent: "space-between" }}>
+function getBooking() {
+  return [
+    {
+      id: 1,
+      name: "Tan Ah Kow",
+      centerName: "Bukit Timah CC",
+      centerId: 3,
+      startTime: new Date("2021-12-01T09:00:00"),
+    },
+    {
+      id: 2,
+      name: "Jean Lee Ah Meow",
+      centerName: "Bukit Timah CC",
+      centerId: 3,
+      startTime: new Date("2021-12-01T10:00:00"),
+    },
+    {
+      id: 3,
+      name: "Lew Ah Boi",
+      centerName: "Bukit Timah CC",
+      centerId: 3,
+      startTime: new Date("2021-12-01T11:00:00"),
+    },
+  ];
+}
+
+export class VaccineRegistrationListing extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <Container>
+          <Box sx={{mt: 8}}>
             <Typography component="h1" variant="h5">
               Active Booking
             </Typography>
-            <Select
-              labelId="vaccineCenterLabel"
-              label="Select Vaccine Centre"
-              id="vaccineCenter"
-              value={selectedCentre}
-              onChange={(e) => {
-                setSelectedCentre(e.target.value);
-                fetchCentreBooking(e.target.value, setBookingList);
-              }}
-              sx={{ width: 1 / 4, mb: 2 }}
-            >
-              {centreList &&
-                centreList.map((centre) => {
-                  return (
-                    <MenuItem key={centre._id} value={centre}>
-                      {centre.name}
-                    </MenuItem>
-                  );
-                })}
-            </Select>
-          </Box>
-          <TableContainer component={Box}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="left">Centre Name</TableCell>
-                  <TableCell align="left">Date and Time</TableCell>
-                  <TableCell align="left">&nbsp;</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {bookingList &&
-                  bookingList.map((bookingList, index) => (
+            <TableContainer component={Box}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="left">Center Name</TableCell>
+                    <TableCell align="left">Start Time</TableCell>
+                    <TableCell align="left">&nbsp;</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {getBooking().map((row) => (
                     <TableRow
-                      key={bookingList?._id}
+                      key={row.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        {bookingList?.name}
+                        {row.name}
                       </TableCell>
-                      <TableCell align="left">{bookingList?.centreName}</TableCell>
+                      <TableCell align="left">{row.centerName}</TableCell>
                       <TableCell align="left">
-                        {bookingList?.dateTimeSlot}
+                        {row.startTime.toString()}
                       </TableCell>
                       <TableCell align="left">
-                        <Button component={Link} to={`/bookings/${bookingList?._id}`}>
+                        <Button component={Link} to='/bookings/1'>
                           <ModeEditIcon />
                         </Button>
-                        <Button
-                          onClick={() =>
-                            handleDelete(
-                              bookingList?._id,
-                              setBookingList,
-                              setMessage,
-                              index
-                            )
-                          }
-                        >
+                        <Button>
                           <DeleteIcon />
                         </Button>
                       </TableCell>
                     </TableRow>
                   ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      </Container>
-    </>
-  );
-};
-
-export default ListVaccinationBooking;
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </Container>
+      </React.Fragment>
+    );
+  }
+}
