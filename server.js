@@ -18,7 +18,6 @@ mongoose.connect(
   }
 );
 
-//* SERVER LINKED => DATABASE
 mongoose.connection.once("open", () => {
   console.log("Connected to mongo");
 });
@@ -28,6 +27,17 @@ app.use(express.static(path.join(__dirname, "./frontend/build")));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const centre = require("./backend/controllers/centreController");
+const reservation = require("./backend/controllers/reservationController");
+const nurse = require("./backend/controllers/nurseController");
+const slot = require("./backend/controllers/slotController");
+
+//* ROUTES
+app.use("/api/centre", centre);
+app.use("/api/reservation", reservation);
+app.use("/api/nurses", nurse);
+app.use("/api/slot", slot);
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "./frontend/build", "index.html"));
