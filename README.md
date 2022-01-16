@@ -22,8 +22,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://vaccine-reservation-system.herokuapp.com/)
-
 The Project is Live here: https://vaccine-reservation-system.herokuapp.com/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
